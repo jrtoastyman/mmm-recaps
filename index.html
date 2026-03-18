@@ -31,7 +31,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* subtle dot grid bg */
   body::before {
     content: '';
     position: fixed;
@@ -44,7 +43,6 @@
 
   .wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 24px; }
 
-  /* HEADER */
   header {
     padding: 60px 0 40px;
     border-bottom: 1px solid var(--border);
@@ -52,7 +50,6 @@
   }
 
   .eyebrow {
-    font-family: var(--sans);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.18em;
@@ -70,10 +67,7 @@
     margin-bottom: 10px;
   }
 
-  h1 em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
+  h1 em { font-style: italic; color: var(--gold-light); }
 
   .tagline {
     font-size: 14px;
@@ -82,35 +76,6 @@
     letter-spacing: 0.02em;
   }
 
-  /* LATEST BADGE */
-  .latest-banner {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(201,168,76,0.1);
-    border: 1px solid var(--border);
-    border-radius: 40px;
-    padding: 6px 14px 6px 10px;
-    font-size: 12px;
-    color: var(--gold);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    margin-bottom: 32px;
-  }
-
-  .latest-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--gold);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-
-  /* SECTION LABEL */
   .section-label {
     font-size: 10px;
     font-weight: 500;
@@ -130,7 +95,6 @@
     background: var(--border);
   }
 
-  /* CARD GRID */
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -163,54 +127,16 @@
     transition: opacity 0.2s;
   }
 
-  .card:hover {
-    border-color: rgba(201,168,76,0.4);
-    transform: translateY(-2px);
-    background: var(--dark-3);
-  }
-
+  .card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); background: var(--dark-3); }
   .card:hover::before { opacity: 1; }
-
-  .card.latest {
-    border-color: rgba(201,168,76,0.35);
-    background: var(--dark-3);
-  }
-
+  .card.latest { border-color: rgba(201,168,76,0.35); background: var(--dark-3); }
   .card.latest::before { opacity: 0.6; }
 
-  .card-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .card-round {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .card-date {
-    font-size: 11px;
-    color: var(--text-dim);
-  }
-
-  .card-title {
-    font-family: var(--serif);
-    font-size: 18px;
-    font-weight: 400;
-    color: #fff;
-    line-height: 1.25;
-  }
-
-  .card-blurb {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    font-weight: 300;
-  }
+  .card-meta { display: flex; align-items: center; justify-content: space-between; }
+  .card-round { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+  .card-date { font-size: 11px; color: var(--text-dim); }
+  .card-title { font-family: var(--serif); font-size: 18px; font-weight: 400; color: #fff; line-height: 1.25; }
+  .card-blurb { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
 
   .card-footer {
     display: flex;
@@ -221,33 +147,12 @@
     border-top: 1px solid rgba(255,255,255,0.05);
   }
 
-  .card-stats {
-    display: flex;
-    gap: 14px;
-  }
+  .card-stats { display: flex; gap: 14px; }
+  .card-stat { font-size: 11px; color: var(--text-dim); }
+  .card-stat span { color: var(--text-muted); font-weight: 500; }
+  .card-arrow { font-size: 14px; color: var(--text-dim); transition: color 0.2s, transform 0.2s; }
+  .card:hover .card-arrow { color: var(--gold); transform: translateX(3px); }
 
-  .card-stat {
-    font-size: 11px;
-    color: var(--text-dim);
-  }
-
-  .card-stat span {
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
-  .card-arrow {
-    font-size: 14px;
-    color: var(--text-dim);
-    transition: color 0.2s, transform 0.2s;
-  }
-
-  .card:hover .card-arrow {
-    color: var(--gold);
-    transform: translateX(3px);
-  }
-
-  /* NEW badge */
   .new-badge {
     display: inline-block;
     background: var(--gold);
@@ -262,7 +167,42 @@
     margin-left: 6px;
   }
 
-  /* FOOTER */
+  .card-placeholder {
+    background: transparent;
+    border: 1px dashed rgba(201,168,76,0.2);
+    border-radius: 12px;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 160px;
+    text-align: center;
+  }
+
+  .placeholder-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px dashed rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    color: var(--text-dim);
+  }
+
+  .placeholder-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .placeholder-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    opacity: 0.6;
+  }
+
   footer {
     border-top: 1px solid var(--border);
     padding: 28px 0 40px;
@@ -290,99 +230,51 @@
   <header>
     <div class="eyebrow">Mimosa March Madness · 2026</div>
     <h1>The <em>Recap</em> Archive</h1>
-    <p class="tagline">284 brackets. One champion. Endless suffering. Documented below.</p>
+    <p class="tagline">Recaps will appear here as the tournament progresses. Check back after games.</p>
   </header>
-
-  <div class="latest-banner">
-    <div class="latest-dot"></div>
-    Latest: Sweet Sixteen Recap — March 27
-  </div>
 
   <div class="section-label">All recaps — newest first</div>
 
   <div class="grid">
 
-    <!-- TEMPLATE: copy one of these cards, update the fields, change href to the new file -->
+    <!--
+    =====================================================================
+    HOW TO ADD A NEW RECAP CARD:
 
-    <a href="sweet16.html" class="card latest">
-      <div class="card-meta">
-        <div class="card-round">Sweet Sixteen</div>
-        <div class="card-date">Mar 27</div>
-      </div>
-      <div class="card-title">Carnage in the Midwest, Calm Everywhere Else<span class="new-badge">New</span></div>
-      <div class="card-blurb">Duke finally got what was coming to them. The rest of you had a perfectly average day, which somehow feels worse.</div>
-      <div class="card-footer">
-        <div class="card-stats">
-          <div class="card-stat"><span>218</span> still alive</div>
-          <div class="card-stat"><span>3</span> upsets</div>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
-    </a>
+    1. Copy the example block below and paste it ABOVE this comment
+    2. Update href, card-round, card-date, card-title, card-blurb, and card-stats
+    3. On the newest card: add class="card latest" and <span class="new-badge">New</span> in the title
+    4. On all older cards: use just class="card" and remove the new-badge span
+    5. Remove the placeholder card once your first real recap is added
+    6. Save and upload to GitHub — live in ~60 seconds
 
-    <a href="r2-day2.html" class="card">
-      <div class="card-meta">
-        <div class="card-round">Second Round · Day 2</div>
-        <div class="card-date">Mar 23</div>
-      </div>
-      <div class="card-title">The Great Unraveling Continues</div>
-      <div class="card-blurb">Sunday delivered three more bracket-busting exits. The person who took a 13-seed in the Elite Eight is currently trending.</div>
-      <div class="card-footer">
-        <div class="card-stats">
-          <div class="card-stat"><span>251</span> still alive</div>
-          <div class="card-stat"><span>4</span> upsets</div>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
-    </a>
+    EXAMPLE (copy from here):
 
-    <a href="r2-day1.html" class="card">
-      <div class="card-meta">
-        <div class="card-round">Second Round · Day 1</div>
-        <div class="card-date">Mar 22</div>
-      </div>
-      <div class="card-title">Saturday Gave and Saturday Took Away</div>
-      <div class="card-blurb">A morning of comfortable wins gave everyone false hope. By 9pm, half the field had lost a Final Four pick.</div>
-      <div class="card-footer">
-        <div class="card-stats">
-          <div class="card-stat"><span>268</span> still alive</div>
-          <div class="card-stat"><span>2</span> upsets</div>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
-    </a>
-
-    <a href="r1-day2.html" class="card">
-      <div class="card-meta">
-        <div class="card-round">First Round · Day 2</div>
-        <div class="card-date">Mar 21</div>
-      </div>
-      <div class="card-title">Friday Was Not Your Friend</div>
-      <div class="card-blurb">The South and Midwest regions did exactly what they were going to do regardless of what you picked.</div>
-      <div class="card-footer">
-        <div class="card-stats">
-          <div class="card-stat"><span>280</span> still alive</div>
-          <div class="card-stat"><span>3</span> upsets</div>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
-    </a>
-
-    <a href="r1-day1.html" class="card">
+    <a href="r1-day1.html" class="card latest">
       <div class="card-meta">
         <div class="card-round">First Round · Day 1</div>
         <div class="card-date">Mar 20</div>
       </div>
-      <div class="card-title">And We're Off. Sort Of.</div>
-      <div class="card-blurb">Day one delivered false hope for half the field and early chaos for everyone who trusted a 3-seed.</div>
+      <div class="card-title">Your Title Here<span class="new-badge">New</span></div>
+      <div class="card-blurb">One or two sentences previewing the recap. Keep it punchy.</div>
       <div class="card-footer">
         <div class="card-stats">
-          <div class="card-stat"><span>284</span> still alive</div>
-          <div class="card-stat"><span>4</span> upsets</div>
+          <div class="card-stat"><span>000</span> entries</div>
+          <div class="card-stat"><span>0</span> upsets</div>
         </div>
         <div class="card-arrow">→</div>
       </div>
     </a>
+
+    =====================================================================
+    -->
+
+    <!-- Remove this placeholder once the first real recap card is added above -->
+    <div class="card-placeholder">
+      <div class="placeholder-icon">◷</div>
+      <div class="placeholder-label">First recap coming soon</div>
+      <div class="placeholder-sub">Check back after tip-off</div>
+    </div>
 
   </div>
 
