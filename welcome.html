@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mimosa March Madness 2026 — The Pool Is Open</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #f1b82d;
+      --gold-dark: #c9960f;
+      --gold-faint: rgba(241, 184, 45, 0.10);
+      --black: #0d0d0d;
+      --dark: #141414;
+      --card: #1b1b1b;
+      --border: rgba(241, 184, 45, 0.22);
+      --text: #ede7d5;
+      --muted: #887f6d;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: var(--black);
+      border-bottom: 3px solid var(--gold);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+    .site-name span { color: var(--gold); }
+    .site-nav { display: flex; gap: 24px; list-style: none; }
+    .site-nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .site-nav a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      background: var(--dark);
+      border-bottom: 2px solid var(--border);
+      padding: 72px 40px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% -10%, rgba(241,184,45,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards 0.1s;
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(58px, 10.5vw, 116px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 26px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+    .hero-title .hl { color: var(--gold); }
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--text);
+      max-width: 620px;
+      margin: 0 auto 30px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.35s;
+    }
+    .hero-chip {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 8px 22px;
+      border-radius: 2px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards 0.48s;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* PROSE */
+    .prose p {
+      font-size: 17px;
+      line-height: 1.82;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .prose strong { color: var(--gold); font-weight: 600; }
+    .prose .note {
+      font-size: 15px;
+      background: var(--card);
+      border-left: 3px solid var(--gold);
+      padding: 14px 20px;
+      border-radius: 0 3px 3px 0;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 44px 0;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .divider-dot {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* STAT SPLIT */
+    .stat-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 40px 0;
+    }
+    .stat-img {
+      overflow: hidden;
+      max-height: 320px;
+    }
+    .stat-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+    .stat-body {
+      background: var(--card);
+      padding: 38px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 90px;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .stat-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* SECTION HEADER */
+    .sec-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    /* MAP */
+    .map-img {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: block;
+    }
+    .img-caption {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 9px;
+      font-style: italic;
+    }
+
+    /* NAMES SPLIT */
+    .names-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+      margin: 40px 0;
+    }
+    .names-img {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: block;
+    }
+    .names-body p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .names-body p:last-child { margin-bottom: 0; }
+    .names-body strong { color: var(--gold); font-weight: 600; }
+
+    /* BRACKETS */
+    .cat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      margin: 32px 0 12px;
+    }
+    .bracket-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 7px;
+    }
+    .bc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .bc:hover {
+      background: rgba(241,184,45,0.05);
+      border-color: rgba(241,184,45,0.5);
+    }
+    .bc-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .bc-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 3px;
+    }
+    .bc-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      margin: 48px 0;
+      padding: 26px 34px;
+      border-left: 4px solid var(--gold);
+      background: var(--gold-faint);
+    }
+    .pull-quote p {
+      font-size: 19px;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1.55;
+    }
+
+    /* CLOSING */
+    .closing {
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+    .closing p {
+      font-size: 17px;
+      line-height: 1.82;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .closing strong { color: var(--gold); font-weight: 600; }
+    .closing a { color: var(--gold); text-decoration: none; font-weight: 600; }
+    .sig {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34px;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      margin-top: 30px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      border-top: 2px solid var(--gold);
+      text-align: center;
+      padding: 28px 40px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 660px) {
+      .site-header { padding: 14px 20px; }
+      .site-nav { display: none; }
+      .hero { padding: 50px 20px 42px; }
+      .content { padding: 44px 20px; }
+      .stat-feature,
+      .names-split { grid-template-columns: 1fr; }
+      .stat-img { max-height: 200px; }
+      .bracket-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-name"><span>Mimosa</span> March Madness</div>
+    <ul class="site-nav">
+      <li><a href="https://www.mimosamarchmadness.com/rules">Rules</a></li>
+      <li><a href="https://www.mimosamarchmadness.com/payout">Payout</a></li>
+      <li><a href="https://thebigtourney.com/madness/site452300/leaderboard/1">Standings</a></li>
+    </ul>
+  </header>
+
+  <section class="hero">
+    <div class="hero-eyebrow">Mimosa March Madness &nbsp;·&nbsp; 2026 Edition</div>
+    <h1 class="hero-title">The <span class="hl">Madness</span><br>Is Here</h1>
+    <p class="hero-sub">Sixty-seven games. Three weeks. One champion. And tons of ways to pick a bracket that have absolutely nothing to do with basketball.</p>
+    <div class="hero-chip">🏀 Games Are Underway — Let's Go</div>
+  </section>
+
+  <main class="content">
+
+    <div class="prose">
+      <p>
+        Welcome back, everyone. The bracket is set, your picks are locked, your excuses are already being prepared, and somewhere out there a <strong>12-seed is getting ready to ruin your bracket by Friday afternoon</strong>. It is, as always, the most wonderful time of the year.
+      </p>
+      <p>
+        For those of you doing this for the first time: welcome. You will not win. But neither will the person who has been doing this for fifteen years, so you're in good company. For those of you returning: you already know the drill. You thought about it too hard, second-guessed your gut, and talked yourself into a Final Four that will be eliminated by Sunday night. This is the way.
+      </p>
+      <div class="note">
+        💸 <strong>Pay your $10 per bracket</strong> via Venmo or Cash App — links on the site. And as I say every year: do <em>not</em> reference basketball, brackets, or the tournament in your payment note. Every year someone does it. <strong>Do not be that knucklehead.</strong>
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+
+    <!-- 67 GAMES -->
+    <div class="stat-feature">
+      <div class="stat-img">
+        <img src="67pic.jpg" alt="67 games in the NCAA Tournament" />
+      </div>
+      <div class="stat-body">
+        <div class="stat-label">By The Numbers</div>
+        <div class="stat-num">67</div>
+        <p class="stat-desc">That's how many games get played between now and the national championship. Ask your teenager why this is somehow funny.</p>
+      </div>
+    </div>
+
+    <!-- MAP -->
+    <div style="margin: 40px 0;">
+      <div class="sec-tag">The Field</div>
+      <div class="sec-title">Who's In & Where They're From</div>
+      <img class="map-img" src="tourneymap.jpg" alt="2026 NCAA Tournament Map" />
+      <p class="img-caption">The full 2026 field, with each school claiming the area that is closer to it than any other tournament team. Texas is having a moment. </p>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+
+    <!-- ALL-NAME TEAM -->
+    <div class="names-split">
+      <img class="names-img" src="weirdnames.jpg" alt="Tourney All-Name Team" />
+      <div class="names-body">
+        <div class="sec-tag">Because Names Matter</div>
+        <div class="sec-title">The All-Name Team</div>
+        <p>
+          Before we get to the brackets, let's appreciate the players who have already won just by showing up on a roster. <strong>Boopie Miller. Puff Johnson. Federiko Federiko.</strong> Chandler Bing — a real person, a real basketball player, an immediate legend.
+        </p>
+        <p>
+          And then there is <strong>Poohpha Warakulnukroh</strong> of UCF, who exists in a category entirely his own. Whoever fills out their bracket and correctly spells his last name in the notes gets my eternal respect, which is worth approximately nothing but is sincerely offered.
+        </p>
+        <p>
+          Also: <strong>Monty Bowser</strong> is either a CBU point guard or the final boss in a Mario game. Possibly both. <strong>Solo Ball</strong> plays for UConn, which feels exactly right, and Hawaii's <strong>Hunter Carver</strong> sounds like two members an an elite meat processing team. This tournament has everything.
+        </p>
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+
+    <!-- JUST FOR FUN BRACKETS -->
+    <div>
+      <div class="sec-tag">Annual Tradition</div>
+      <div class="sec-title">The Just-For-Fun Brackets</div>
+
+      <div class="prose" style="margin-bottom: 4px;">
+        <p>
+          As we do every year, I'll be tracking a collection of celebrity and novelty brackets alongside your real picks all tournament long. These exist because <strong>there is nothing more satisfying — or more humbling — than losing to Bugs Bunny in the Elite Eight</strong>. I'll use them for running commentary throughout, and I promise you: by Sweet Sixteen weekend, at least one of them will be beating half of you.  I'll be continuing to add them as I find them, but here are some that are already in the field.
+        </p>
+      </div>
+
+      <div class="cat-label">🎲 Pure Chaos Methods</div>
+      <div class="bracket-grid">
+        <div class="bc">
+          <div class="bc-icon">🪙</div>
+          <div>
+            <div class="bc-name">Coin Flip</div>
+            <div class="bc-desc">Heads or tails, every game, no exceptions. The purest expression of basketball nihilism available to us.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🐻</div>
+          <div>
+            <div class="bc-name">Mascot Bracket</div>
+            <div class="bc-desc">Which mascot wins in a fight? Simple question. Extremely contentious answers. Your answers may vary.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">1️⃣</div>
+          <div>
+            <div class="bc-name">All Chalk</div>
+            <div class="bc-desc">Every favorite, every game, no upsets. The bracket of a coward. Gets torched by Thursday of Week 1.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🎓</div>
+          <div>
+            <div class="bc-name">Famous Alumni</div>
+            <div class="bc-desc">Whichever school has the more famous graduates advances. The basketball team is irrelevant. The celebrity alumni are everything.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-label">🗳️ Political & Geographic</div>
+      <div class="bracket-grid">
+        <div class="bc">
+          <div class="bc-icon">🔵</div>
+          <div>
+            <div class="bc-name">Blue States</div>
+            <div class="bc-desc">Schools in Democratic-leaning states advance. A test of whether the coasts know basketball, or just think they do.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🔴</div>
+          <div>
+            <div class="bc-name">Red States</div>
+            <div class="bc-desc">Schools in Republican-leaning states advance. Spoiler alert, this is way more teams this year.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-label">🌟 Celebrity Brackets</div>
+      <div class="bracket-grid">
+        <div class="bc">
+          <div class="bc-icon">🏀</div>
+          <div>
+            <div class="bc-name">President Obama</div>
+            <div class="bc-desc">The Baller in Chief. Takes this seriously. May actually know something about basketball. Threat level: real.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🎵</div>
+          <div>
+            <div class="bc-name">Zac Brown</div>
+            <div class="bc-desc">Country music royalty enters the pool for the first time. Unclear methodology. Southern bias strongly suspected.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🎤</div>
+          <div>
+            <div class="bc-name">Snoop Dogg</div>
+            <div class="bc-desc">A man of many talents, brackets among them. Goes with the vibes. Shockingly competitive historically.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🎙️</div>
+          <div>
+            <div class="bc-name">Jimmy Fallon</div>
+            <div class="bc-desc">Late night's contribution to the pool. Has done really, really poorly in the past.  Probably asked his writers for help. Probably ignored them.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🤘</div>
+          <div>
+            <div class="bc-name">Metallica</div>
+            <div class="bc-desc">Methodology unknown but one assumes it favors aggression. Enter Sandman, exit seed lines.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">📊</div>
+          <div>
+            <div class="bc-name">Andy Katz</div>
+            <div class="bc-desc">The one bracket that's supposed to know what it's doing. We include it to have something to humble.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🏈</div>
+          <div>
+            <div class="bc-name">Diego Pavia</div>
+            <div class="bc-desc">Vanderbilt's record-breaking QB and unfathomable douchebag. Let's see how that translates here.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-label">📱 Internet Brackets</div>
+      <div class="bracket-grid">
+        <div class="bc">
+          <div class="bc-icon">😏</div>
+          <div>
+            <div class="bc-name">The Rizzler</div>
+            <div class="bc-desc">Know this: the guy has rizz.  Will that translate into a great bracket?  If you have to ask, you don't have the rizz to understand it.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🌊</div>
+          <div>
+            <div class="bc-name">Jordan The Stallion</div>
+            <div class="bc-desc">Massive platform. Unknowable methodology. We are simply along for the ride.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">✨</div>
+          <div>
+            <div class="bc-name">Amir Aura Khan</div>
+            <div class="bc-desc">His bracket radiates something. Whether that something is basketball knowledge is the three-week experiment.</div>
+          </div>
+        </div>
+        <div class="bc">
+          <div class="bc-icon">🍯</div>
+          <div>
+            <div class="bc-name">Yung Gravy</div>
+            <div class="bc-desc">Your guess is as good as mine tbh.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-label">🐰 The Wildcard</div>
+      <div class="bracket-grid">
+        <div class="bc">
+          <div class="bc-icon">🥕</div>
+          <div>
+            <div class="bc-name">Bugs Bunny</div>
+            <div class="bc-desc">He beat the Monstars. He will not be intimidated by 64 college basketball teams. The smartest analyst in this field, technically.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"By the time we reach the Final Four, at least one of these brackets will be demolishing people who spent two weeks agonizing over their picks. That's not a prediction. That's a tradition."</p>
+    </div>
+
+    <div class="closing">
+      <p>
+        Throughout the tournament I'll be checking in on how the celebrity and novelty brackets are performing relative to the field. <strong>There will be updates. There will be trash talk. There will be at least one moment where the Coin Flip bracket outperforms your carefully researched picks and you just have to sit with that.</strong>
+      </p>
+      <p>
+        Real-time standings live at the <a href="https://thebigtourney.com/madness/site452300/leaderboard/1">official tracking site</a>. May your upsets be someone else's. May your Final Four survive the first weekend.
+      </p>
+      <p>Let's go.</p>
+      <div class="sig">— Jamie</div>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="https://www.mimosamarchmadness.com">mimosamarchmadness.com</a>
+    &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; May the chalk hold (it won't)
+  </footer>
+
+</body>
+</html>
